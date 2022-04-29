@@ -1,0 +1,94 @@
+<mat-stepper  orientation="vertical" linear #stepper>
+    <mat-step [stepControl]="firstFormGroup" errorMessage="Packing List is required." completed=false>
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Upload your Packing List File (.xlsx)</ng-template>
+        
+        <mat-toolbar *ngIf="currentFile" class="progress-bar">
+          <mat-progress-bar color="accent" [value]="progress"></mat-progress-bar>
+          <span class="progress">{{ progress }}%</span>
+        </mat-toolbar>
+
+        <mat-form-field>
+          <div>
+            <mat-toolbar>
+              <!-- Display files names -->
+              <input matInput [(ngModel)]="orderListAttr" readonly class="packingList" formControlName="firstCtrl"
+              required/>
+              <button mat-raised-button color="primary">Browse File</button>
+            </mat-toolbar>
+            <!-- Fetch selected filed on change -->
+            <input
+              type="file"
+              #fileInput
+              id="uploadFile"
+              (change)="selectExcelFile($event)"
+              name="uploadFile"
+              multiple="single"
+              accept=".xlsx"
+            />
+          </div>
+        </mat-form-field>
+        <div>
+          <button mat-stroked-button matStepperNext>Next</button>
+          <button mat-stroked-button (click)="upload()">Upload</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" errorMessage="Waybill is required." completed=false>
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Upload the Waybill File(.pdf)</ng-template>
+        
+        <mat-toolbar *ngIf="currentFile" class="progress-bar">
+          <mat-progress-bar color="accent" [value]="progress"></mat-progress-bar>
+          <span class="progress">{{ progress }}%</span>
+        </mat-toolbar>
+        <mat-form-field>
+          <div>
+            <mat-toolbar>
+              <!-- Display files names -->
+              <input matInput [(ngModel)]="wayBillAttr" readonly class="waybill" formControlName="secondCtrl"
+              required/>
+              <button mat-raised-button color="primary">Browse File</button>
+            </mat-toolbar>
+            <!-- Fetch selected filed on change -->
+            <input
+              type="file"
+              #fileInput
+              id="uploadFile"
+              (change)="selectPdfFile($event)"
+              name="uploadFile"
+              multiple="single"
+              accept=".pdf"
+            />
+          </div>
+        </mat-form-field>
+        <div>
+          <button mat-stroked-button matStepperPrevious>Back</button>
+          <button mat-stroked-button matStepperNext>Next</button>
+          <button mat-stroked-button (click)="upload()">Upload</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step completed=false>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>List of Files</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let file of fileInfos | async">
+              <a href="{{ file.url }}">{{ file.name }}</a>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+      <div>
+        <button mat-stroked-button matStepperPrevious>Back</button>
+        <button mat-stroked-button (click)="generate()">Generate</button>
+        <!-- <button mat-stroked-button (click)="stepper.reset();firstFormGroup.reset();secondFormGroup.reset()">Reset</button> -->
+      </div>
+    </mat-step>
+  </mat-stepper>
+  

@@ -1,0 +1,5 @@
+body{background-image: url("\src\assets\white.jpg"); background-color:#f2f2f2;color:#666;font-family:'Droid Sans',Tahoma,Arial,sans-serif;font-size:13px;line-height:1.6em;}
+#uploader{
+    margin:0px auto;
+    width:650px;
+}
