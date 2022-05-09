@@ -13,11 +13,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UploaderComponent } from './uploader/uploader.component';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { DragdropComponent } from './uploader/dragdrop/dragdrop.component';
+import { DndDirective } from './uploader/dragdrop/dnd.directive';
+import { ProgressComponent } from './component/progress.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UploaderComponent
+    UploaderComponent,
+    DragdropComponent,
+    DndDirective,
+    ProgressComponent
   ],
   imports: [
     BrowserModule,

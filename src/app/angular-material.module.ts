@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 const materialModules = [
   MatIconModule,
   MatButtonModule,
@@ -13,6 +14,7 @@ const materialModules = [
   MatFormFieldModule,
   MatProgressBarModule,
   MatToolbarModule,
+  MatProgressSpinnerModule
 ];
 @NgModule({
   imports: [CommonModule, ...materialModules],

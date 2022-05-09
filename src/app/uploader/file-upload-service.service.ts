@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class FileUploadServiceService {
   
-  // private baseUrl = 'http://localhost:8081';
-  private baseUrl = 'https://quqi-file-uploader.herokuapp.com';
+  private baseUrl = 'http://localhost:8081';
+  // private baseUrl = 'https://quqi-file-uploader.herokuapp.com';
 
   constructor(private http: HttpClient) { }
   

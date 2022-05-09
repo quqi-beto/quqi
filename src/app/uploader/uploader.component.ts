@@ -27,9 +27,9 @@ export class UploaderComponent implements OnInit {
   progress = 0;
   fileInfos?: Observable<any>;
   message = '';
+  inProgress = '';
 
   constructor(private _formBuilder: FormBuilder, private uploadService: FileUploadServiceService) { }
-  // constructor(){}
 
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
@@ -61,6 +61,7 @@ export class UploaderComponent implements OnInit {
   }
 
   upload(): void {
+    this.inProgress = 'running';
     this.progress = 0;
     this.message = "";
     if (this.currentFile) {
@@ -82,6 +83,7 @@ export class UploaderComponent implements OnInit {
           this.message = 'Could not upload the file!';
         }
         this.currentFile = undefined;
+        this.inProgress = '';
       });
     }
   }

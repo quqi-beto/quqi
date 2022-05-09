@@ -1,22 +1,24 @@
 <mat-stepper  orientation="vertical" linear #stepper>
-    <mat-step [stepControl]="firstFormGroup" errorMessage="Packing List is required." completed=false>
+    <mat-step [stepControl]="firstFormGroup" errorMessage="Packing List is required." completed=true>
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Upload your Packing List File (.xlsx)</ng-template>
         
-        <mat-toolbar *ngIf="currentFile" class="progress-bar">
+        <!-- <mat-toolbar *ngIf="currentFile" class="progress-bar">
           <mat-progress-bar color="accent" [value]="progress"></mat-progress-bar>
           <span class="progress">{{ progress }}%</span>
-        </mat-toolbar>
-
+        </mat-toolbar> -->
+      <app-dragdrop filter=".xlsx" formControlName="firstCtrl"></app-dragdrop>
+        <!-- <mat-spinner color="warn" *ngIf="inProgress"></mat-spinner> -->
+        <!--
         <mat-form-field>
           <div>
             <mat-toolbar>
-              <!-- Display files names -->
+              
               <input matInput [(ngModel)]="orderListAttr" readonly class="packingList" formControlName="firstCtrl"
               required/>
               <button mat-raised-button color="primary">Browse File</button>
             </mat-toolbar>
-            <!-- Fetch selected filed on change -->
+            
             <input
               type="file"
               #fileInput
@@ -28,29 +30,32 @@
             />
           </div>
         </mat-form-field>
+        -->
         <div>
           <button mat-stroked-button matStepperNext>Next</button>
           <button mat-stroked-button (click)="upload()">Upload</button>
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" errorMessage="Waybill is required." completed=false>
+    <mat-step [stepControl]="secondFormGroup" errorMessage="Waybill is required." completed=true>
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Upload the Waybill File(.pdf)</ng-template>
         
-        <mat-toolbar *ngIf="currentFile" class="progress-bar">
+      <app-dragdrop filter=".pdf"></app-dragdrop>
+        
+        <!-- <mat-toolbar *ngIf="currentFile" class="progress-bar">
           <mat-progress-bar color="accent" [value]="progress"></mat-progress-bar>
           <span class="progress">{{ progress }}%</span>
-        </mat-toolbar>
-        <mat-form-field>
+        </mat-toolbar> -->
+        <!-- <mat-spinner color="warn" *ngIf="inProgress"></mat-spinner> -->
+
+        <!-- <mat-form-field>
           <div>
             <mat-toolbar>
-              <!-- Display files names -->
               <input matInput [(ngModel)]="wayBillAttr" readonly class="waybill" formControlName="secondCtrl"
               required/>
               <button mat-raised-button color="primary">Browse File</button>
             </mat-toolbar>
-            <!-- Fetch selected filed on change -->
             <input
               type="file"
               #fileInput
@@ -61,7 +66,7 @@
               accept=".pdf"
             />
           </div>
-        </mat-form-field>
+        </mat-form-field> -->
         <div>
           <button mat-stroked-button matStepperPrevious>Back</button>
           <button mat-stroked-button matStepperNext>Next</button>
@@ -74,7 +79,7 @@
       <p>You are now done.</p>
       <mat-card class="example-card">
         <mat-card-header>
-          <mat-card-title>List of Files</mat-card-title>
+          <mat-card-title>Generated Files</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <mat-list role="list">
