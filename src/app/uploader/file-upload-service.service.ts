@@ -23,6 +23,17 @@ export class FileUploadServiceService {
     return this.http.request(req);
   }
 
+  startNew(): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+    formData.append('userId', 'quqi');
+    const req = new HttpRequest('POST', `${this.baseUrl}/file/start`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+
+  }
+
   getFiles(): Observable<any> {
     return this.http.get(`${this.baseUrl}/files`);
   }

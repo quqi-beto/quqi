@@ -32,6 +32,9 @@ export class UploaderComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder, private uploadService: FileUploadServiceService) { }
 
   ngOnInit(): void {
+    
+    this.uploadService.startNew().subscribe();
+
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],
     });
