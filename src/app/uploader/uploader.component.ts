@@ -92,6 +92,15 @@ export class UploaderComponent implements OnInit {
   }
 
   generate(): void {
-    this.fileInfos = this.uploadService.getFiles();
+    this.uploadService.generate().subscribe(
+      (event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          
+        } else if (event instanceof HttpResponse) {
+          // this.message = event.body.message;
+          this.fileInfos = this.uploadService.getFiles();
+        }
+      });
+    // this.fileInfos = this.uploadService.getFiles();
   }
 }
